@@ -61,9 +61,18 @@ export function useToggleLike({ id, isLiked, uid }) {
 export function useDeletePost(id) {
 	const [isLoading, setLoading] = useState(false);
 
-	async function deletePost() {}
-	return { deletePost, isLoading };
+	async function deletePost() {
+		const res = window.confirm("Are you sure you want to delete this post?");
+	
+		if (res){
+			setLoading(true);
+			
+			setLoading(false);
+		}
+
+	}
 }
+return { deletePost, isLoading };
 
 export function usePost(id) {
 	const q = doc(db, "posts", id);

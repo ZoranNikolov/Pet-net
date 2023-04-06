@@ -5,6 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "components/dashboard";
 import Comments from "components/comments";
 import Profile from "components/profile";
+import Users from "components/users";
 
 export const ROOT = "/";
 export const LOGIN = "/login";
@@ -30,11 +31,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: USERS,
-				element: "Users",
+				element: <Users />,
 			},
 			{
 				path: PROFILE,
-				element:<Profile />,
+				element: <Profile />,
 			},
 			{
 				path: COMMENTS,
