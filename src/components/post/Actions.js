@@ -8,7 +8,7 @@ import { PROTECTED } from "lib/routes";
 import { useComments } from "hooks/comments";
 
 export default function Actions({ post }) {
-	const { id, likes } = post;
+	const { id, likes, uid } = post;
 	const { user, isLoading: userLoading } = useAuth();
 
 	const isLiked = likes.includes(user?.id);
@@ -30,9 +30,7 @@ export default function Actions({ post }) {
 					size="md"
 					colorScheme="red"
 					variant="ghost"
-					icon={isLiked ? 
-						<FaPaw /> : 
-						<IoPawOutline />}
+					icon={isLiked ? <FaPaw /> : <IoPawOutline />}
 					isRound
 				/>
 				{likes.length}
@@ -45,23 +43,30 @@ export default function Actions({ post }) {
 					size="md"
 					colorScheme="teal"
 					variant="ghost"
-					icon={comments?.length === 0 ? 
-						<FaRegComment /> : 
-						<FaComment />}
+					icon={
+						comments?.length === 0 ? (
+							<FaRegComment />
+						) : (
+							<FaComment />
+						)
+					}
 					isRound
 				/>
 				{comments?.length}
 			</Flex>
-			<IconButton
-				ml="auto"
-				onClick={deletePost}
-				isLoading={deleteLoading}
-				size="md"
-				colorScheme="red"
-				variant="ghost"
-				icon={<FaTrashAlt />}
-				isRound
-			/>
+
+			{!userLoading && user.id === uid && (
+				<IconButton
+					ml="auto"
+					onClick={deletePost}
+					isLoading={deleteLoading}
+					size="md"
+					colorScheme="red"
+					variant="ghost"
+					icon={<FaTrashAlt />}
+					isRound
+				/>
+			)}
 		</Flex>
 	);
 }
