@@ -4,6 +4,7 @@ import Register from "../components/auth/Register";
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "components/dashboard";
 import Comments from "components/comments";
+import Profile from "components/profile";
 
 export const ROOT = "/";
 export const LOGIN = "/login";
@@ -33,7 +34,7 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: PROFILE,
-				element: "Users profile for a specific id",
+				element:<Profile />,
 			},
 			{
 				path: COMMENTS,

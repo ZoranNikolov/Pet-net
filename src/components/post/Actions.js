@@ -5,6 +5,7 @@ import { IoPawOutline } from "react-icons/io5";
 import { useToggleLike, useDeletePost } from "hooks/posts";
 import { Link } from "react-router-dom";
 import { PROTECTED } from "lib/routes";
+import { useComments } from "hooks/comments";
 
 export default function Actions({ post }) {
 	const { id, likes } = post;
@@ -17,8 +18,8 @@ export default function Actions({ post }) {
 		isLiked,
 		uid: user?.id,
 	});
-
-	const {deletePost, isLoading: deleteLoading} = useDeletePost(id);
+	const { deletePost, isLoading: deleteLoading } = useDeletePost(id);
+	const { comments, isLoading: commentsLoading } = useComments(id);
 
 	return (
 		<Flex p="2">
@@ -29,7 +30,9 @@ export default function Actions({ post }) {
 					size="md"
 					colorScheme="red"
 					variant="ghost"
-					icon={isLiked ? <FaPaw /> : <IoPawOutline />}
+					icon={isLiked ? 
+						<FaPaw /> : 
+						<IoPawOutline />}
 					isRound
 				/>
 				{likes.length}
@@ -42,10 +45,12 @@ export default function Actions({ post }) {
 					size="md"
 					colorScheme="teal"
 					variant="ghost"
-					icon={<FaRegComment />}
+					icon={comments?.length === 0 ? 
+						<FaRegComment /> : 
+						<FaComment />}
 					isRound
 				/>
-				5
+				{comments?.length}
 			</Flex>
 			<IconButton
 				ml="auto"
