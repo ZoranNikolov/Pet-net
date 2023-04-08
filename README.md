@@ -17,8 +17,7 @@ To install Pet Social Network, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/ZoranNikolov/Pet-net.git`
 2. Install dependencies: `npm install`
-3. Set up a Firebase project and add your Firebase configuration details to a `.env` file in the root of the project. You can find more information on how to do this in the Firebase documentation.
-4. Run the application: `npm start`
+3. Run the application: `npm start`
 
 ## Usage
 

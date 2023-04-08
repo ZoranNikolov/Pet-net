@@ -112,7 +112,6 @@ export function useRegister() {
 					avatar: "",
 					date: Date.now(),
 				});
-
 				toast({
 					title: "Account created",
 					description: "You are logged in",

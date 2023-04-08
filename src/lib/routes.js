@@ -6,8 +6,13 @@ import Dashboard from "components/dashboard";
 import Comments from "components/comments";
 import Profile from "components/profile";
 import Users from "components/users";
+import Home from "components/home";
+import About from "components/about";
+import Contact from "components/contact";
 
-export const ROOT = "/";
+export const HOME = "/";
+export const ABOUT = "/about";
+export const CONTACT = "/contact";
 export const LOGIN = "/login";
 export const REGISTER = "/register";
 
@@ -18,7 +23,9 @@ export const PROFILE = "/protected/profile/:id";
 export const COMMENTS = "/protected/comments/:id";
 
 export const router = createBrowserRouter([
-	{ path: ROOT, element: "Public Root" },
+	{ path: HOME, element: <Home /> },
+	{ path: ABOUT, element: <About /> },
+	{ path: CONTACT, element: <Contact /> },
 	{ path: LOGIN, element: <Login /> },
 	{ path: REGISTER, element: <Register /> },
 	{
@@ -44,3 +51,31 @@ export const router = createBrowserRouter([
 		],
 	},
 ]);
+
+// export const router = createBrowserRouter([
+// 	{ path: ROOT, element: <Home /> },
+// 	{ path: LOGIN, element: <Login /> },
+// 	{ path: REGISTER, element: <Register /> },
+// 	{
+// 		path: PROTECTED,
+// 		element: <Layout />,
+// 		children: [
+// 			{
+// 				path: DASHBOARD,
+// 				element: <Dashboard />,
+// 			},
+// 			{
+// 				path: USERS,
+// 				element: <Users />,
+// 			},
+// 			{
+// 				path: PROFILE,
+// 				element: <Profile />,
+// 			},
+// 			{
+// 				path: COMMENTS,
+// 				element: <Comments />,
+// 			},
+// 		],
+// 	},
+// ]);
