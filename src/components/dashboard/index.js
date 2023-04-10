@@ -1,4 +1,5 @@
 import { Box, Button, HStack, Heading, Textarea } from "@chakra-ui/react";
+import Navbar from "components/layout/Navbar";
 import PostList from "components/post/PostList";
 import { useAuth } from "hooks/auth";
 import { useAddPost, usePosts } from "hooks/posts";
@@ -45,10 +46,10 @@ function NewPost() {
 }
 
 export default function Dashboard() {
-	const {posts, isLoading} = usePosts();
+	const { posts, isLoading } = usePosts();
 
-	if (isLoading) return 'Loading posts...';
-	
+	if (isLoading) return "Loading posts...";
+
 	return (
 		<>
 			<NewPost />

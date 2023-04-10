@@ -14,7 +14,12 @@ import { DASHBOARD, LOGIN } from "lib/routes";
 import { Link as RouterLink } from "react-router-dom";
 import { useRegister } from "hooks/auth";
 import { useForm } from "react-hook-form";
-import { emailValidate, passwordValidate, usernameValidate } from "utils/form-validate";
+import {
+	emailValidate,
+	passwordValidate,
+	usernameValidate,
+} from "utils/form-validate";
+import Navbar from "components/layout/Navbar";
 
 export default function Register() {
 	const { register: signup, isLoading } = useRegister();
@@ -23,8 +28,6 @@ export default function Register() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-
-	// console.log(errors);
 
 	async function handleRegister(data) {
 		await signup({
@@ -36,73 +39,76 @@ export default function Register() {
 	}
 
 	return (
-		<Center w="100%" h="100vh">
-			<Box mx="1" maxW="md" p="9" borderWidth="1px" borderRadius="lg">
-				<Heading mb="4" size="lg" textAlign="center">
-					Register
-				</Heading>
-
-				<form onSubmit={handleSubmit(handleRegister)}>
-				<FormControl isInvalid={errors.username} py="2">
-						<FormLabel> Username </FormLabel>
-						<Input
-							placeholder="username"
-							{...register("username", usernameValidate)}
-						></Input>
-						<FormErrorMessage>
-							{errors.username && errors.username.message}
-						</FormErrorMessage>
-					</FormControl>
-					<FormControl isInvalid={errors.email} py="2">
-						<FormLabel> Email </FormLabel>
-						<Input
-							type="email"
-							placeholder="user@email.com"
-							{...register("email", emailValidate)}
-						></Input>
-						<FormErrorMessage>
-							{errors.email && errors.email.message}
-						</FormErrorMessage>
-					</FormControl>
-					<FormControl isInvalid={errors.password} py="2">
-						<FormLabel> Password </FormLabel>
-						<Input
-							type="password"
-							placeholder="password123"
-							{...register("password", passwordValidate)}
-						></Input>
-						<FormErrorMessage>
-							{errors.password && errors.password.message}
-						</FormErrorMessage>
-					</FormControl>
-					<Button
-						mt="4"
-						type="submit"
-						colorScheme="teal"
-						size="md"
-						w="full"
-						isLoading={isLoading}
-						loadingText="Signing up"
-					>
+		<>
+			<Navbar />
+			<Center w="100%" h="100vh">
+				<Box mx="1" maxW="md" p="9" borderWidth="1px" borderRadius="lg">
+					<Heading mb="4" size="lg" textAlign="center">
 						Register
-					</Button>
-				</form>
+					</Heading>
 
-				<Text fontSize="xlg" align="center" mt="6">
-					Already have an account?{" "}
-					<Link
-						as={RouterLink}
-						to={LOGIN}
-						color="teal.800"
-						fontWeight="medium"
-						textDecor="underline"
-						_hover={{ background: "teal.100" }}
-					>
-						Log In
-					</Link>{" "}
-					instead!
-				</Text>
-			</Box>
-		</Center>
+					<form onSubmit={handleSubmit(handleRegister)}>
+						<FormControl isInvalid={errors.username} py="2">
+							<FormLabel> Username </FormLabel>
+							<Input
+								placeholder="username"
+								{...register("username", usernameValidate)}
+							></Input>
+							<FormErrorMessage>
+								{errors.username && errors.username.message}
+							</FormErrorMessage>
+						</FormControl>
+						<FormControl isInvalid={errors.email} py="2">
+							<FormLabel> Email </FormLabel>
+							<Input
+								type="email"
+								placeholder="user@email.com"
+								{...register("email", emailValidate)}
+							></Input>
+							<FormErrorMessage>
+								{errors.email && errors.email.message}
+							</FormErrorMessage>
+						</FormControl>
+						<FormControl isInvalid={errors.password} py="2">
+							<FormLabel> Password </FormLabel>
+							<Input
+								type="password"
+								placeholder="password123"
+								{...register("password", passwordValidate)}
+							></Input>
+							<FormErrorMessage>
+								{errors.password && errors.password.message}
+							</FormErrorMessage>
+						</FormControl>
+						<Button
+							mt="4"
+							type="submit"
+							colorScheme="teal"
+							size="md"
+							w="full"
+							isLoading={isLoading}
+							loadingText="Signing up"
+						>
+							Register
+						</Button>
+					</form>
+
+					<Text fontSize="xlg" align="center" mt="6">
+						Already have an account?{" "}
+						<Link
+							as={RouterLink}
+							to={LOGIN}
+							color="teal.800"
+							fontWeight="medium"
+							textDecor="underline"
+							_hover={{ background: "teal.100" }}
+						>
+							Log In
+						</Link>{" "}
+						instead!
+					</Text>
+				</Box>
+			</Center>
+		</>
 	);
 }
