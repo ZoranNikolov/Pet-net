@@ -38,7 +38,7 @@ function NewPost() {
 					mt="5"
 					placeholder="Create a new post..."
 					minRows={3}
-					{...register("text", { required: true })}
+				{...register("text", { required: true })}
 				/>
 			</form>
 		</Box>
