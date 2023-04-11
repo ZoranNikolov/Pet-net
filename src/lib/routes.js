@@ -51,31 +51,3 @@ export const router = createBrowserRouter([
 		],
 	},
 ]);
-
-// export const router = createBrowserRouter([
-// 	{ path: ROOT, element: <Home /> },
-// 	{ path: LOGIN, element: <Login /> },
-// 	{ path: REGISTER, element: <Register /> },
-// 	{
-// 		path: PROTECTED,
-// 		element: <Layout />,
-// 		children: [
-// 			{
-// 				path: DASHBOARD,
-// 				element: <Dashboard />,
-// 			},
-// 			{
-// 				path: USERS,
-// 				element: <Users />,
-// 			},
-// 			{
-// 				path: PROFILE,
-// 				element: <Profile />,
-// 			},
-// 			{
-// 				path: COMMENTS,
-// 				element: <Comments />,
-// 			},
-// 		],
-// 	},
-// ]);

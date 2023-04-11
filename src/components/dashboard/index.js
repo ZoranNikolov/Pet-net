@@ -1,5 +1,4 @@
 import { Box, Button, HStack, Heading, Textarea } from "@chakra-ui/react";
-import Navbar from "components/layout/Navbar";
 import PostList from "components/post/PostList";
 import { useAuth } from "hooks/auth";
 import { useAddPost, usePosts } from "hooks/posts";
@@ -18,6 +17,7 @@ function NewPost() {
 		});
 		reset();
 	}
+	
 	return (
 		<Box maxW="600px" mx="auto" py="10">
 			<form onSubmit={handleSubmit(handleAddPost)}>
@@ -38,7 +38,7 @@ function NewPost() {
 					mt="5"
 					placeholder="Create a new post..."
 					minRows={3}
-				{...register("text", { required: true })}
+					{...register("text", { required: true })}
 				/>
 			</form>
 		</Box>

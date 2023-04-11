@@ -1,6 +1,6 @@
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { auth, db } from "lib/firebase";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DASHBOARD, LOGIN } from "lib/routes";
 import {
 	createUserWithEmailAndPassword,
@@ -10,12 +10,13 @@ import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import isUsernameExists from "utils/isUsernameExists";
+import { UserContext } from "App";
 
 export function useAuth() {
 	const [authUser, authLoading, error] = useAuthState(auth);
 	const [isLoading, setLoading] = useState(true);
 	const [user, setUser] = useState(null);
-	
+
 	useEffect(() => {
 		async function fetchData() {
 			setLoading(true);
@@ -41,6 +42,7 @@ export function useLogin() {
 	const [isLoading, setLoading] = useState(false);
 	const toast = useToast();
 	const navigate = useNavigate();
+	const { isUserLoggedIn, setIsUserLoggedIn } = useContext(UserContext);
 
 	async function login({ email, password, redirectTo = DASHBOARD }) {
 		setLoading(true);
@@ -55,6 +57,7 @@ export function useLogin() {
 				duration: 5000,
 			});
 			navigate(redirectTo);
+			setIsUserLoggedIn(true);
 		} catch (error) {
 			toast({
 				title: "Logging in failed",
@@ -79,6 +82,7 @@ export function useRegister() {
 	const [isLoading, setLoading] = useState(false);
 	const toast = useToast();
 	const navigate = useNavigate();
+	const { isUserLoggedIn, setIsUserLoggedIn } = useContext(UserContext);
 
 	async function register({
 		username,
@@ -120,8 +124,8 @@ export function useRegister() {
 					position: "top",
 					duration: 5000,
 				});
-
 				navigate(redirectTo);
+				setIsUserLoggedIn(true);
 			} catch (error) {
 				toast({
 					title: "Signing Up failed",
@@ -144,6 +148,7 @@ export function useLogout() {
 	const [signOut, isLoading, error] = useSignOut(auth);
 	const toast = useToast();
 	const navigate = useNavigate();
+	const { isUserLoggedIn, setIsUserLoggedIn } = useContext(UserContext);
 
 	async function logout() {
 		if (await signOut()) {
@@ -154,6 +159,7 @@ export function useLogout() {
 				duration: 5000,
 			});
 			navigate(LOGIN);
+			setIsUserLoggedIn(false);
 		} // else: show error [signOut() returns false if failed]
 	}
 

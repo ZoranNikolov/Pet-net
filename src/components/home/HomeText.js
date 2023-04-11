@@ -28,6 +28,7 @@ export default function HomeText() {
 				</Heading>
 				{text.map((paragraph) => (
 					<Card
+						key={paragraph.id}
 						direction={{ base: "column", sm: "row" }}
 						overflow="hidden"
 						variant="outline"
