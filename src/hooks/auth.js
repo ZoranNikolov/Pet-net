@@ -152,15 +152,16 @@ export function useLogout() {
 
 	async function logout() {
 		if (await signOut()) {
-			toast({
-				title: "Successfully logged out",
-				status: "success",
-				position: "top",
-				duration: 5000,
-			});
+			isUserLoggedIn &&
+				toast({
+					title: "Successfully logged out",
+					status: "success",
+					position: "top",
+					duration: 5000,
+				});
 			navigate(LOGIN);
 			setIsUserLoggedIn(false);
-		} 
+		}
 	}
 
 	return { logout, isLoading };

@@ -113,6 +113,9 @@ export function usePosts(uid = null) {
 		  )
 		: query(collection(db, "posts"), orderBy("date", "desc"));
 	const [posts, isLoading, error] = useCollectionData(q);
+	const likes = posts
+		?.map((post) => post.likes)
+		.reduce((acc, val) => acc.concat(val), []);
 	if (error) throw error;
-	return { posts, isLoading };
+	return { posts, likes, isLoading };
 }
