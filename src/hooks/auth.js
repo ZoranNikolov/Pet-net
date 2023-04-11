@@ -160,7 +160,7 @@ export function useLogout() {
 			});
 			navigate(LOGIN);
 			setIsUserLoggedIn(false);
-		} // else: show error [signOut() returns false if failed]
+		} 
 	}
 
 	return { logout, isLoading };
