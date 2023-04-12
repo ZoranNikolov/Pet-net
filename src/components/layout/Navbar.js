@@ -1,5 +1,5 @@
 import { Button, Flex, Link } from "@chakra-ui/react";
-import { UserContext } from "App";
+import { UserContext } from "components/auth/UserContextProvider";
 import { useLogout } from "hooks/auth";
 import { ABOUT, CONTACT, DASHBOARD, HOME } from "lib/routes";
 import { useContext } from "react";

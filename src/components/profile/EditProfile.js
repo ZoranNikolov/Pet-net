@@ -34,7 +34,7 @@ export default function EditProfile({ isOpen, onClose }) {
 			<ModalOverlay />
 			<ModalContent>
 				<ModalHeader>Edit profile</ModalHeader>
-				<ModalCloseButton avatar />
+				<ModalCloseButton />
 				<ModalBody>
 					<HStack spacing="5">
 						<Avatar user={user} overrideAvatar={fileURL} />

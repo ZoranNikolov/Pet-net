@@ -10,7 +10,7 @@ import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import isUsernameExists from "utils/isUsernameExists";
-import { UserContext } from "App";
+import { UserContext } from "components/auth/UserContextProvider";
 
 export function useAuth() {
 	const [authUser, authLoading, error] = useAuthState(auth);
@@ -165,4 +165,15 @@ export function useLogout() {
 	}
 
 	return { logout, isLoading };
+}
+
+export function useIsUserLoggedIn() {
+	const [isUserLoggedIn, setIsUserLoggedIn] = useState(() => {
+		const storedIsUserLoggedIn = localStorage.getItem("isUserLoggedIn");
+		return storedIsUserLoggedIn ? JSON.parse(storedIsUserLoggedIn) : false;
+	});
+
+	useEffect(() => {
+		localStorage.setItem("isUserLoggedIn", JSON.stringify(isUserLoggedIn));
+	}, [isUserLoggedIn]);
 }

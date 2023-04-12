@@ -4,7 +4,6 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "lib/firebase";
 import { useState } from "react";
 import { useCollectionData, useDocumentData } from "react-firebase-hooks/firestore";
-import { useNavigate } from "react-router-dom";
 
 export function useUser(id) {
 	const q = query(doc(db, "users", id));
@@ -22,7 +21,6 @@ export function useUpdateAvatar(uid) {
 	const [isLoading, setLoading] = useState(false);
 	const [file, setFile] = useState(null);
 	const toast = useToast();
-	const navigate = useNavigate();
 
 	async function updateAvatar(){
 
@@ -58,8 +56,6 @@ export function useUpdateAvatar(uid) {
 		});
 
 		setLoading(false);
-
-		navigate(0);
 	}
 
 	return {
