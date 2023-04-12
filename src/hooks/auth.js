@@ -1,5 +1,5 @@
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
-import { auth, db } from "lib/firebase";
+import { auth, db, storage } from "lib/firebase";
 import { useContext, useEffect, useState } from "react";
 import { DASHBOARD, LOGIN } from "lib/routes";
 import {
@@ -11,32 +11,51 @@ import { useNavigate } from "react-router-dom";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import isUsernameExists from "utils/isUsernameExists";
 import { UserContext } from "components/auth/UserContextProvider";
+import { getDownloadURL, ref } from "@firebase/storage";
 
 export function useAuth() {
 	const [authUser, authLoading, error] = useAuthState(auth);
 	const [isLoading, setLoading] = useState(true);
 	const [user, setUser] = useState(null);
-
+	
 	useEffect(() => {
-		async function fetchData() {
-			setLoading(true);
-			const ref = doc(db, "users", authUser.uid);
-			const docSnap = await getDoc(ref);
-			setUser(docSnap.data());
-			setLoading(false);
+	  async function fetchData() {
+		setLoading(true);
+		const ref = doc(db, "users", authUser.uid);
+		const docSnap = await getDoc(ref);
+		const userData = docSnap.data();
+		setUser(userData);
+		setLoading(false);
+	  }
+  
+	  if (!authLoading) {
+		if (authUser) {
+		  fetchData();
+		} else {
+		  setLoading(false); // Not signed in
 		}
-
-		if (!authLoading) {
-			if (authUser) {
-				fetchData();
-			} else {
-				setLoading(false); // Not signed in
-			}
-		}
-	}, [authLoading]);
-
+	  }
+	}, [authLoading, authUser]);
+  
+	// Update the user object with the avatar URL
+	useEffect(() => {
+	  if (user) {
+		const storageRef = ref(storage, `avatars/${user.id}`);
+		getDownloadURL(storageRef)
+		  .then((url) => {
+			setUser((prevState) => ({
+			  ...prevState,
+			  avatar: url,
+			}));
+		  })
+		  .catch((error) => {
+			console.log(error);
+		  });
+	  }
+	}, [user]);
+  
 	return { user, isLoading, error };
-}
+  }
 
 export function useLogin() {
 	const [isLoading, setLoading] = useState(false);

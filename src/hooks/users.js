@@ -2,7 +2,7 @@ import { useToast } from "@chakra-ui/react";
 import { collection, doc, query, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "lib/firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCollectionData, useDocumentData } from "react-firebase-hooks/firestore";
 
 export function useUser(id) {
@@ -20,48 +20,58 @@ export function useUsers(){
 export function useUpdateAvatar(uid) {
 	const [isLoading, setLoading] = useState(false);
 	const [file, setFile] = useState(null);
+	const [fileURL, setFileURL] = useState(null);
 	const toast = useToast();
-
-	async function updateAvatar(){
-
-		if (!file) {
-			toast({
-				title: "No file selected",
-				description: "Please select	a file to upload",
-				status: "error",
-				duration: 5000,
-				isClosable: true,
-				position: "top",
-			});
-
-			return;
-		}
-
-		setLoading(true);
-
-		const fileRef = ref(storage, "avatars/" + uid);
-		await uploadBytes(fileRef, file);
-		
-		const avatarURL = await getDownloadURL(fileRef);
-
-		const docRef = doc(db, "users", uid);
-		await updateDoc(docRef, {avatar: avatarURL});
-
+  
+	async function updateAvatar() {
+	  if (!file || !(file instanceof Blob && file.type.startsWith('image/'))) {
 		toast({
-			title: "Profile updated",
-			status: "success",
-			isClosable: true,
-			position: "top",
-			duration: 5000,
+		  title: "Invalid file selected",
+		  description: "Please select a valid image file to upload",
+		  status: "error",
+		  duration: 5000,
+		  isClosable: true,
+		  position: "top",
 		});
-
-		setLoading(false);
+		return;
+	  }
+  
+	  setLoading(true);
+  
+	  const fileRef = ref(storage, "avatars/" + uid);
+	  await uploadBytes(fileRef, file);
+  
+	  const avatarURL = await getDownloadURL(fileRef);
+  
+	  const docRef = doc(db, "users", uid);
+	  await updateDoc(docRef, { avatar: avatarURL });
+  
+	  toast({
+		title: "Profile updated",
+		status: "success",
+		isClosable: true,
+		position: "top",
+		duration: 5000,
+	  });
+  
+	  setFile(null);
+	  setFileURL(null);
+	  setLoading(false);
 	}
-
+  
+	useEffect(() => {
+	  if (file) {
+		setFileURL(URL.createObjectURL(file));
+	  } else {
+		setFileURL(null);
+	  }
+	}, [file]);
+  
 	return {
-		setFile,
-		updateAvatar,
-		isLoading,
-		fileURL: file && URL.createObjectURL(file),
+	  setFile,
+	  updateAvatar,
+	  isLoading,
+	  fileURL,
 	};
-} 
+  }
+  
