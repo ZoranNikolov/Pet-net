@@ -26,7 +26,7 @@ export function useUpdateAvatar(uid) {
 	const [file, setFile] = useState(null);
 	const [fileURL, setFileURL] = useState(null);
 	const toast = useToast();
-	const { avatarUrl, setAvatarUrl } = useContext(UserContext);
+	const { setAvatarUrl } = useContext(UserContext);
 
 	async function updateAvatar() {
 		if (!file) {

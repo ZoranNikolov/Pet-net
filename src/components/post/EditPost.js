@@ -1,35 +1,28 @@
 import {
 	Button,
-	Divider,
-	Flex,
-	HStack,
-	Stack,
-	Text,
-	useDisclosure,
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
 } from "@chakra-ui/react";
 
-export default function EditPost() {
-	const { isOpen, onOpen, onClose } = useDisclosure();
-
-	// if (userLoading) return "Loading...";
-
+export default function EditPost({ post, isOpen, onClose }) {
+	const { text } = post;
 	return (
-		<Flex>
-			<Stack ml="10">
-				<Text fontSize="2xl">{user.username}</Text>
-				<HStack spacing="10">
-					<Text color="gray.700" fontSize={["sm", "lg"]}>
-						Posts: {posts.length}
-					</Text>
-					<Text color="gray.700" fontSize={["sm", "lg"]}>
-						Likes: {likes.length}
-					</Text>
-					<Text color="gray.700" fontSize={["sm", "lg"]}>
-						Joined: {format(user.date, "dd MMM YYY")}
-					</Text>
-				</HStack>
-			</Stack>
-			<EditProfile isOpen={isOpen} onClose={onClose} />
-		</Flex>
+		<Modal isOpen={isOpen} onClose={onClose}>
+			<ModalOverlay />
+			<ModalContent>
+				<ModalHeader>Edit your post</ModalHeader>
+				<ModalBody>{text}</ModalBody>
+				<ModalFooter gap="3">
+					<Button colorScheme="teal">Save</Button>
+					<Button colorScheme="gray" onClick={onClose}>
+						Close
+					</Button>
+				</ModalFooter>
+			</ModalContent>
+		</Modal>
 	);
 }

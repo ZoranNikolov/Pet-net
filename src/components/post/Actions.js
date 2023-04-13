@@ -1,13 +1,19 @@
 import { Flex, IconButton } from "@chakra-ui/react";
 import { useAuth } from "hooks/auth";
-import { FaComment, FaPaw, FaRegComment, FaTrashAlt } from "react-icons/fa";
+import {
+	FaComment,
+	FaPaw,
+	FaRegComment,
+	FaTrashAlt,
+	FaRegEdit,
+} from "react-icons/fa";
 import { IoPawOutline } from "react-icons/io5";
 import { useToggleLike, useDeletePost } from "hooks/posts";
 import { Link } from "react-router-dom";
 import { PROTECTED } from "lib/routes";
 import { useComments } from "hooks/comments";
 
-export default function Actions({ post }) {
+export default function Actions({ post, setIsModalOpen }) {
 	const { id, likes, uid } = post;
 	const { user, isLoading: userLoading } = useAuth();
 
@@ -20,6 +26,9 @@ export default function Actions({ post }) {
 	});
 	const { deletePost, isLoading: deleteLoading } = useDeletePost(id);
 	const { comments, isLoading: commentsLoading } = useComments(id);
+	const showModalHandler = () => {
+		setIsModalOpen(true);
+	};
 
 	return (
 		<Flex p="2">
@@ -55,16 +64,27 @@ export default function Actions({ post }) {
 			</Flex>
 
 			{!userLoading && user.id === uid && (
-				<IconButton
-					ml="auto"
-					onClick={deletePost}
-					isLoading={deleteLoading}
-					size="md"
-					colorScheme="red"
-					variant="ghost"
-					icon={<FaTrashAlt />}
-					isRound
-				/>
+				<>
+					<IconButton
+						// ml="auto"
+						onClick={showModalHandler}
+						// isLoading={deleteLoading}
+						size="md"
+						variant="ghost"
+						icon={<FaRegEdit />}
+						isRound
+					/>
+					<IconButton
+						ml="auto"
+						onClick={deletePost}
+						isLoading={deleteLoading}
+						size="md"
+						colorScheme="red"
+						variant="ghost"
+						icon={<FaTrashAlt />}
+						isRound
+					/>
+				</>
 			)}
 		</Flex>
 	);
