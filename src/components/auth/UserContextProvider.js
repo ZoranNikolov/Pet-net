@@ -8,12 +8,14 @@ export function UserContextProvider(props) {
 		return storedIsUserLoggedIn ? JSON.parse(storedIsUserLoggedIn) : false;
 	});
 
+	const [avatarUrl, setAvatarUrl] = useState(null);
+
 	useEffect(() => {
 		localStorage.setItem("isUserLoggedIn", JSON.stringify(isUserLoggedIn));
 	}, [isUserLoggedIn]);
 
 	return (
-		<UserContext.Provider value={{ isUserLoggedIn, setIsUserLoggedIn }}>
+		<UserContext.Provider value={{ isUserLoggedIn, setIsUserLoggedIn, avatarUrl, setAvatarUrl }}>
 			{props.children}
 		</UserContext.Provider>
 	);

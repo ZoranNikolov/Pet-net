@@ -12,7 +12,7 @@ function ActiveUser() {
 	return (
 		<Stack align="center" spacing="5" my="8">
 			<Avatar user={user} />
-			<Code>@{user.username}</Code>
+			<Code colorScheme="none">@{user.username}</Code>
 			<Button
 				colorScheme="teal"
 				w="full"

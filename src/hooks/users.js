@@ -3,7 +3,12 @@ import { collection, doc, query, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "lib/firebase";
 import { useState } from "react";
-import { useCollectionData, useDocumentData } from "react-firebase-hooks/firestore";
+import {
+	useCollectionData,
+	useDocumentData,
+} from "react-firebase-hooks/firestore";
+import { useContext } from "react";
+import { UserContext } from "components/auth/UserContextProvider";
 
 export function useUser(id) {
 	const q = query(doc(db, "users", id));
@@ -12,7 +17,7 @@ export function useUser(id) {
 	return { user, isLoading };
 }
 
-export function useUsers(){
+export function useUsers() {
 	const [users, isLoading] = useCollectionData(collection(db, "users"));
 	return { users, isLoading };
 }
@@ -21,9 +26,9 @@ export function useUpdateAvatar(uid) {
 	const [isLoading, setLoading] = useState(false);
 	const [file, setFile] = useState(null);
 	const toast = useToast();
+	const { setAvatarUrl } = useContext(UserContext);
 
-	async function updateAvatar(){
-
+	async function updateAvatar() {
 		if (!file) {
 			toast({
 				title: "No file selected",
@@ -41,11 +46,12 @@ export function useUpdateAvatar(uid) {
 
 		const fileRef = ref(storage, "avatars/" + uid);
 		await uploadBytes(fileRef, file);
-		
+
 		const avatarURL = await getDownloadURL(fileRef);
+		setAvatarUrl(avatarURL); //new
 
 		const docRef = doc(db, "users", uid);
-		await updateDoc(docRef, {avatar: avatarURL});
+		await updateDoc(docRef, { avatar: avatarURL });
 
 		toast({
 			title: "Profile updated",
@@ -64,4 +70,4 @@ export function useUpdateAvatar(uid) {
 		isLoading,
 		fileURL: file && URL.createObjectURL(file),
 	};
-} 
+}
