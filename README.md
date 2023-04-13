@@ -30,6 +30,7 @@ To use Pet Social Network, follow these steps:
 5. Delete your own post by clicking the "Delete" button under the post.
 6. Like other peoples' posts by clicking on the "Like" button under the post.
 7. Comment on other users' posts by clicking the "Comment" button and entering your comment.
+8. If you have any questions, please do not hesitate to contact us using the contact form.
 
 ## Credits
 
