@@ -74,7 +74,7 @@ export function useLogin() {
 				status: "success",
 				isClosable: true,
 				position: "top",
-				duration: 5000,
+				duration: 2000,
 			});
 			navigate(redirectTo);
 			setIsUserLoggedIn(true);
@@ -85,7 +85,7 @@ export function useLogin() {
 				status: "error",
 				isClosable: true,
 				position: "top",
-				duration: 5000,
+				duration: 2000,
 			});
 			setLoading(false);
 			return false; // Return false if login failed
@@ -120,7 +120,7 @@ export function useRegister() {
 				status: "error",
 				isClosable: true,
 				position: "top",
-				duration: 5000,
+				duration: 2000,
 			});
 			setLoading(false);
 		} else {
@@ -142,7 +142,7 @@ export function useRegister() {
 					status: "success",
 					isClosable: true,
 					position: "top",
-					duration: 5000,
+					duration: 2000,
 				});
 				navigate(redirectTo);
 				setIsUserLoggedIn(true);
@@ -153,7 +153,7 @@ export function useRegister() {
 					status: "error",
 					isClosable: true,
 					position: "top",
-					duration: 5000,
+					duration: 2000,
 				});
 			} finally {
 				setLoading(false);
@@ -177,7 +177,7 @@ export function useLogout() {
 					title: "Successfully logged out",
 					status: "success",
 					position: "top",
-					duration: 5000,
+					duration: 2000,
 				});
 			navigate(LOGIN);
 			setIsUserLoggedIn(false);

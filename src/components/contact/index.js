@@ -38,7 +38,7 @@ export default function Contact() {
 						status: "success",
 						isClosable: true,
 						position: "top",
-						duration: 5000,
+						duration: 2000,
 					});
 					form.current.reset();
 				},
@@ -49,7 +49,7 @@ export default function Contact() {
 						status: "error",
 						isClosable: true,
 						position: "top",
-						duration: 5000,
+						duration: 2000,
 					});
 				}
 			);

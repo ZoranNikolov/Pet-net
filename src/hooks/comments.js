@@ -29,7 +29,7 @@ export default function useAddComment({ postId, uid }) {
 			status: "success",
 			isClosable: true,
 			position: "top",
-			duration: 5000,
+			duration: 2000,
 		});
 
 		setLoading(false);
@@ -55,10 +55,11 @@ export function useDeleteComment(id) {
 	const [isLoading, setLoading] = useState(false);
 	const toast = useToast();
 
-	async function deleteComment(){
-		
-		const res = window.confirm("Are you sure you want to delete this comment?");
-		
+	async function deleteComment() {
+		const res = window.confirm(
+			"Are you sure you want to delete this comment?"
+		);
+
 		if (res) {
 			setLoading(true);
 			const docRef = doc(db, "comments", id);
@@ -68,11 +69,11 @@ export function useDeleteComment(id) {
 				status: "info",
 				isClosable: true,
 				position: "top",
-				duration: 5000,
+				duration: 2000,
 			});
 			setLoading(false);
 		}
 	}
 
-	return {deleteComment, isLoading}
+	return { deleteComment, isLoading };
 }

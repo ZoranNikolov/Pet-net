@@ -34,7 +34,7 @@ export function useUpdateAvatar(uid) {
 				title: "No file selected",
 				description: "Please select a file to upload",
 				status: "error",
-				duration: 5000,
+				duration: 2000,
 				isClosable: true,
 				position: "top",
 			});
@@ -58,7 +58,7 @@ export function useUpdateAvatar(uid) {
 			status: "success",
 			isClosable: true,
 			position: "top",
-			duration: 5000,
+			duration: 2000,
 		});
 
 		setFile(null);
