@@ -38,12 +38,37 @@ export function useAddPost() {
 			status: "success",
 			isClosable: true,
 			position: "top",
-			duration: 5000,
+			duration: 2000,
 		});
 		setLoading(false);
 	}
 
 	return { addPost, isLoading };
+}
+
+export function useEditPost() {
+	const [isLoading, setLoading] = useState(false);
+	const toast = useToast();
+
+	async function editPost(post, updatedText) {
+		setLoading(true);
+		const id = post.id;
+		console.log('updated text'+ updatedText);
+		await setDoc(doc(db, "posts", id), {
+			...post,
+			text: updatedText
+		});
+		toast({
+			title: "Post edited successfully!",
+			status: "success",
+			isClosable: true,
+			position: "top",
+			duration: 2000,
+		});
+		setLoading(false);
+	}
+
+	return { editPost, isLoading };
 }
 
 export function useToggleLike({ id, isLiked, uid }) {
@@ -88,7 +113,7 @@ export function useDeletePost(id) {
 				status: "info",
 				isClosable: true,
 				position: "top",
-				duration: 5000,
+				duration: 2000,
 			});
 
 			setLoading(false);
