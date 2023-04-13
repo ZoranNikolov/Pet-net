@@ -2,12 +2,12 @@ import { useToast } from "@chakra-ui/react";
 import { collection, doc, query, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "lib/firebase";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
 	useCollectionData,
 	useDocumentData,
 } from "react-firebase-hooks/firestore";
-// import { UserContext } from "components/auth/UserContextProvider";
+import { UserContext } from "components/auth/UserContextProvider";
 
 export function useUser(id) {
 	const q = query(doc(db, "users", id));
@@ -26,7 +26,7 @@ export function useUpdateAvatar(uid) {
 	const [file, setFile] = useState(null);
 	const [fileURL, setFileURL] = useState(null);
 	const toast = useToast();
-	// const { setAvatarUrl } = useContext(UserContext);
+	const { avatarUrl, setAvatarUrl } = useContext(UserContext);
 
 	async function updateAvatar() {
 		if (!file) {
@@ -48,7 +48,7 @@ export function useUpdateAvatar(uid) {
 		await uploadBytes(fileRef, file);
 
 		const avatarURL = await getDownloadURL(fileRef);
-		// setAvatarUrl(avatarURL);
+		setAvatarUrl(avatarURL);
 
 		const docRef = doc(db, "users", uid);
 		await updateDoc(docRef, { avatar: avatarURL });

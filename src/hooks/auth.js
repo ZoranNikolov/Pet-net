@@ -17,6 +17,7 @@ export function useAuth() {
 	const [authUser, authLoading, error] = useAuthState(auth);
 	const [isLoading, setLoading] = useState(true);
 	const [user, setUser] = useState(null);
+	const { avatarUrl, setAvatarUrl } = useContext(UserContext);
 	
 	useEffect(() => {
 	  async function fetchData() {
@@ -52,7 +53,7 @@ export function useAuth() {
 			console.log(error);
 		  });
 	  }
-	}, [user]);
+	}, [avatarUrl]);
   
 	return { user, isLoading, error };
   }
