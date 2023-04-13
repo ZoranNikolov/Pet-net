@@ -2,6 +2,7 @@ import { useToast } from "@chakra-ui/react";
 import { collection, doc, query, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "lib/firebase";
+<<<<<<< HEAD
 import { useState } from "react";
 import {
 	useCollectionData,
@@ -9,6 +10,10 @@ import {
 } from "react-firebase-hooks/firestore";
 import { useContext } from "react";
 import { UserContext } from "components/auth/UserContextProvider";
+=======
+import { useEffect, useState } from "react";
+import { useCollectionData, useDocumentData } from "react-firebase-hooks/firestore";
+>>>>>>> 191462c267b134778f997f0da05dfc3d97a2a1ed
 
 export function useUser(id) {
 	const q = query(doc(db, "users", id));
@@ -25,7 +30,9 @@ export function useUsers() {
 export function useUpdateAvatar(uid) {
 	const [isLoading, setLoading] = useState(false);
 	const [file, setFile] = useState(null);
+	const [fileURL, setFileURL] = useState(null);
 	const toast = useToast();
+<<<<<<< HEAD
 	const { setAvatarUrl } = useContext(UserContext);
 
 	async function updateAvatar() {
@@ -53,21 +60,62 @@ export function useUpdateAvatar(uid) {
 		const docRef = doc(db, "users", uid);
 		await updateDoc(docRef, { avatar: avatarURL });
 
+=======
+  
+	async function updateAvatar() {
+	  if (!file || !(file instanceof Blob && file.type.startsWith('image/'))) {
+>>>>>>> 191462c267b134778f997f0da05dfc3d97a2a1ed
 		toast({
-			title: "Profile updated",
-			status: "success",
-			isClosable: true,
-			position: "top",
-			duration: 5000,
+		  title: "Invalid file selected",
+		  description: "Please select a valid image file to upload",
+		  status: "error",
+		  duration: 5000,
+		  isClosable: true,
+		  position: "top",
 		});
-
-		setLoading(false);
+		return;
+	  }
+  
+	  setLoading(true);
+  
+	  const fileRef = ref(storage, "avatars/" + uid);
+	  await uploadBytes(fileRef, file);
+  
+	  const avatarURL = await getDownloadURL(fileRef);
+  
+	  const docRef = doc(db, "users", uid);
+	  await updateDoc(docRef, { avatar: avatarURL });
+  
+	  toast({
+		title: "Profile updated",
+		status: "success",
+		isClosable: true,
+		position: "top",
+		duration: 5000,
+	  });
+  
+	  setFile(null);
+	  setFileURL(null);
+	  setLoading(false);
 	}
-
+  
+	useEffect(() => {
+	  if (file) {
+		setFileURL(URL.createObjectURL(file));
+	  } else {
+		setFileURL(null);
+	  }
+	}, [file]);
+  
 	return {
-		setFile,
-		updateAvatar,
-		isLoading,
-		fileURL: file && URL.createObjectURL(file),
+	  setFile,
+	  updateAvatar,
+	  isLoading,
+	  fileURL,
 	};
+<<<<<<< HEAD
 }
+=======
+  }
+  
+>>>>>>> 191462c267b134778f997f0da05dfc3d97a2a1ed
