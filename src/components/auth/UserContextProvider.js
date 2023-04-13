@@ -8,6 +8,8 @@ export function UserContextProvider(props) {
 		return storedIsUserLoggedIn ? JSON.parse(storedIsUserLoggedIn) : false;
 	});
 
+	// const [avatarUrl, setAvatarUrl] = useState(null);
+
 	useEffect(() => {
 		localStorage.setItem("isUserLoggedIn", JSON.stringify(isUserLoggedIn));
 	}, [isUserLoggedIn]);
