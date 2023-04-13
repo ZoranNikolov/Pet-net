@@ -17,52 +17,52 @@ export function useAuth() {
 	const [authUser, authLoading, error] = useAuthState(auth);
 	const [isLoading, setLoading] = useState(true);
 	const [user, setUser] = useState(null);
-	const { avatarUrl, setAvatarUrl } = useContext(UserContext);
-	
+	const { avatarUrl } = useContext(UserContext);
+
 	useEffect(() => {
-	  async function fetchData() {
-		setLoading(true);
-		const ref = doc(db, "users", authUser.uid);
-		const docSnap = await getDoc(ref);
-		const userData = docSnap.data();
-		setUser(userData);
-		setLoading(false);
-	  }
-  
-	  if (!authLoading) {
-		if (authUser) {
-		  fetchData();
-		} else {
-		  setLoading(false); // Not signed in
+		async function fetchData() {
+			setLoading(true);
+			const ref = doc(db, "users", authUser.uid);
+			const docSnap = await getDoc(ref);
+			const userData = docSnap.data();
+			setUser(userData);
+			setLoading(false);
 		}
-	  }
+
+		if (!authLoading) {
+			if (authUser) {
+				fetchData();
+			} else {
+				setLoading(false); 
+			}
+		}
 	}, [authLoading, authUser]);
-  
+
 	// Update the user object with the avatar URL
 	useEffect(() => {
-	  if (user) {
-		const storageRef = ref(storage, `avatars/${user.id}`);
-		getDownloadURL(storageRef)
-		  .then((url) => {
-			setUser((prevState) => ({
-			  ...prevState,
-			  avatar: url,
-			}));
-		  })
-		  .catch((error) => {
-			console.log(error);
-		  });
-	  }
+		if (user) {
+			const storageRef = ref(storage, `avatars/${user.id}`);
+			getDownloadURL(storageRef)
+				.then((url) => {
+					setUser((prevState) => ({
+						...prevState,
+						avatar: url,
+					}));
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
 	}, [avatarUrl]);
-  
+
 	return { user, isLoading, error };
-  }
+}
 
 export function useLogin() {
 	const [isLoading, setLoading] = useState(false);
 	const toast = useToast();
 	const navigate = useNavigate();
-	const { isUserLoggedIn, setIsUserLoggedIn } = useContext(UserContext);
+	const { setIsUserLoggedIn } = useContext(UserContext);
 
 	async function login({ email, password, redirectTo = DASHBOARD }) {
 		setLoading(true);
@@ -102,7 +102,7 @@ export function useRegister() {
 	const [isLoading, setLoading] = useState(false);
 	const toast = useToast();
 	const navigate = useNavigate();
-	const { isUserLoggedIn, setIsUserLoggedIn } = useContext(UserContext);
+	const { setIsUserLoggedIn } = useContext(UserContext);
 
 	async function register({
 		username,
@@ -165,7 +165,7 @@ export function useRegister() {
 }
 
 export function useLogout() {
-	const [signOut, isLoading, error] = useSignOut(auth);
+	const [signOut, isLoading] = useSignOut(auth);
 	const toast = useToast();
 	const navigate = useNavigate();
 	const { isUserLoggedIn, setIsUserLoggedIn } = useContext(UserContext);

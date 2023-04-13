@@ -38,7 +38,6 @@ export default function Sidebar() {
 			top="16"
 			display={{ base: "none", md: "block" }}
 		>
-			{/* Active user */}
 			<ActiveUser />
 			<Box align="center">
 				<Box as="ul" borderBottom="2px solid" borderColor="teal.200" />

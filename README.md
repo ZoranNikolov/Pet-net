@@ -23,11 +23,13 @@ To install Pet Social Network, follow these steps:
 
 To use Pet Social Network, follow these steps:
 
-1. Sign up for an account and create a profile for your pet.
-2. Search for other pets and pet owners using the search bar.
-3. Follow other pets and pet owners to see their posts in your feed.
-4. Create a post by clicking the "Create Post" button and sharing a photo or story about your pet.
-5. Comment on other users' posts by clicking the "Comment" button and entering your comment.
+1. Sign up for an account. Edit your profile by changing the avatar of your account.
+2. Search for other pets and pet owners using the all users button.
+3. Create a post by clicking the "Create Post" button and sharing a story about your pet or starting a discussion.
+4. Edit your own post at any time, using the "Edit" button under the post.
+5. Delete your own post by clicking the "Delete" button under the post.
+6. Like other peoples' posts by clicking on the "Like" button under the post.
+7. Comment on other users' posts by clicking the "Comment" button and entering your comment.
 
 ## Credits
 

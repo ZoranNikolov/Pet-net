@@ -25,7 +25,7 @@ export default function Actions({ post, setIsModalOpen }) {
 		uid: user?.id,
 	});
 	const { deletePost, isLoading: deleteLoading } = useDeletePost(id);
-	const { comments, isLoading: commentsLoading } = useComments(id);
+	const { comments } = useComments(id);
 	const showModalHandler = () => {
 		setIsModalOpen(true);
 	};
@@ -66,9 +66,7 @@ export default function Actions({ post, setIsModalOpen }) {
 			{!userLoading && user.id === uid && (
 				<>
 					<IconButton
-						// ml="auto"
 						onClick={showModalHandler}
-						// isLoading={deleteLoading}
 						size="md"
 						variant="ghost"
 						icon={<FaRegEdit />}

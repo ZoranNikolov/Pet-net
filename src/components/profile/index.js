@@ -8,7 +8,7 @@ import {
 	useDisclosure,
 } from "@chakra-ui/react";
 import PostList from "components/post/PostList";
-import { useLikes, usePosts } from "hooks/posts";
+import { usePosts } from "hooks/posts";
 import { useParams } from "react-router-dom";
 import Avatar from "./Avatar";
 import { useUser } from "hooks/users";

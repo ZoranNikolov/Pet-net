@@ -14,7 +14,7 @@ import { useEditPost } from "hooks/posts";
 export default function EditPost({ post, isOpen, onClose }) {
 	const { text } = post;
 	const { control, handleSubmit } = useForm({ defaultValues: { text } });
-	const { editPost, isLoading: editingPost } = useEditPost();
+	const { editPost } = useEditPost();
 
 	function handleEditPost(data) {
 		editPost(post, data.text);

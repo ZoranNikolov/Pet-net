@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
 import { Avatar as ChakraAvatar } from "@chakra-ui/react";
 import { PROTECTED } from "lib/routes";
-// import { UserContext } from "components/auth/UserContextProvider";
-// import { useContext } from "react";
 
 export default function Avatar({ user, size = "xl", overrideAvatar = null }) {
-	// const { avatarUrl} = useContext(UserContext);
 	if (!user) return "Loading...";
 
 	return (
