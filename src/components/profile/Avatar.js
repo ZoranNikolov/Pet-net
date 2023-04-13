@@ -14,7 +14,7 @@ export default function Avatar({ user, size = "xl", overrideAvatar = null }) {
 			to={`${PROTECTED}/profile/${user.id}`}
 			name={user.username}
 			size={size}
-			src={overrideAvatar || avatarUrl || user?.avatar}
+			src={overrideAvatar || user?.avatar}
 			alt={`${user?.username}'s avatar`}
 			_hover={{ cursor: "pointer", opacity: "0.8" }}
 		/>
