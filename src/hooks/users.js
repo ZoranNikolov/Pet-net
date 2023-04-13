@@ -2,7 +2,7 @@ import { useToast } from "@chakra-ui/react";
 import { collection, doc, query, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "lib/firebase";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import {
 	useCollectionData,
 	useDocumentData,
