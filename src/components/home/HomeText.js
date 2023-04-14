@@ -1,9 +1,7 @@
 import {
 	Box,
-	Button,
 	Card,
 	CardBody,
-	CardFooter,
 	Heading,
 	Image,
 	Stack,
@@ -48,12 +46,6 @@ export default function HomeText() {
 
 								<Text py="2">{paragraph.content}</Text>
 							</CardBody>
-
-							{/* <CardFooter>
-								<Button variant="solid" colorScheme="blue">
-									Buy Latte
-								</Button>
-							</CardFooter> */}
 						</Stack>
 					</Card>
 				))}
