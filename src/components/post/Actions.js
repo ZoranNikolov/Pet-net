@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { PROTECTED } from "lib/routes";
 import { useComments } from "hooks/comments";
 
-export default function Actions({ post, setIsModalOpen }) {
+export default function Actions({ post, setIsEditModalOpen }) {
 	const { id, likes, uid } = post;
 	const { user, isLoading: userLoading } = useAuth();
 
@@ -26,8 +26,8 @@ export default function Actions({ post, setIsModalOpen }) {
 	});
 	const { deletePost, isLoading: deleteLoading } = useDeletePost(id);
 	const { comments } = useComments(id);
-	const showModalHandler = () => {
-		setIsModalOpen(true);
+	const showEditModalHandler = () => {
+		setIsEditModalOpen(true);
 	};
 
 	return (
@@ -66,7 +66,7 @@ export default function Actions({ post, setIsModalOpen }) {
 			{!userLoading && user.id === uid && (
 				<>
 					<IconButton
-						onClick={showModalHandler}
+						onClick={showEditModalHandler}
 						size="md"
 						variant="ghost"
 						icon={<FaRegEdit />}

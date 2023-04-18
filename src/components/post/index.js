@@ -6,9 +6,9 @@ import EditPost from "./EditPost";
 
 export default function Post({ post }) {
 	const { text } = post;
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const closeModalHandler = () => {
-		setIsModalOpen(false);
+		setIsEditModalOpen(false);
 	};
 
 	return (
@@ -20,11 +20,11 @@ export default function Post({ post }) {
 						{text}
 					</Text>
 				</Box>
-				<Actions post={post} setIsModalOpen={setIsModalOpen} />
-				{isModalOpen && (
+				<Actions post={post} setIsEditModalOpen={setIsEditModalOpen} />
+				{isEditModalOpen && (
 					<EditPost
 						post={post}
-						isOpen={isModalOpen}
+						isOpen={isEditModalOpen}
 						onClose={closeModalHandler}
 					/>
 				)}

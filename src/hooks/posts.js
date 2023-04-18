@@ -53,7 +53,7 @@ export function useEditPost() {
 	async function editPost(post, updatedText) {
 		setLoading(true);
 		const id = post.id;
-		console.log('updated text'+ updatedText);
+		
 		await setDoc(doc(db, "posts", id), {
 			...post,
 			text: updatedText
