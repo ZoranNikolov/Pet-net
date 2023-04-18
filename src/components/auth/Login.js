@@ -26,8 +26,6 @@ export default function Login() {
 		formState: { errors },
 	} = useForm();
 
-	console.log(errors);
-
 	async function handleLogin(data) {
 		const succeeded = await login({
 			email: data.email,

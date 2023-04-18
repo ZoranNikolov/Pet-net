@@ -36,7 +36,7 @@ export default function Comment({ comment }) {
 								size="sm"
 								ml="auto"
 								icon={<FaTrashAlt />}
-								colorScheme="red"
+								colorScheme="teal"
 								variant="ghost"
 								isRound
 								onClick={deleteComment}

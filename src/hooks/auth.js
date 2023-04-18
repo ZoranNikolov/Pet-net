@@ -79,9 +79,13 @@ export function useLogin() {
 			navigate(redirectTo);
 			setIsUserLoggedIn(true);
 		} catch (error) {
+			console.log(error.message);
 			toast({
 				title: "Logging in failed",
-				description: error.message,
+				description:
+					error.message === "Firebase: Error (auth/wrong-password)."
+						? "Wrong password!"
+						: "Username not found!",
 				status: "error",
 				isClosable: true,
 				position: "top",

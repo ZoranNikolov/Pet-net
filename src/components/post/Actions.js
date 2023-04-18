@@ -37,7 +37,7 @@ export default function Actions({ post, setIsModalOpen }) {
 					onClick={toggleLike}
 					isLoading={likeLoading || userLoading}
 					size="md"
-					colorScheme="red"
+					colorScheme="teal"
 					variant="ghost"
 					icon={isLiked ? <FaPaw /> : <IoPawOutline />}
 					isRound
@@ -77,7 +77,7 @@ export default function Actions({ post, setIsModalOpen }) {
 						onClick={deletePost}
 						isLoading={deleteLoading}
 						size="md"
-						colorScheme="red"
+						colorScheme="teal"
 						variant="ghost"
 						icon={<FaTrashAlt />}
 						isRound
