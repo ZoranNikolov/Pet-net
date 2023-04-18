@@ -46,7 +46,6 @@ export default function EditPost({ post, isOpen, onClose }) {
 						<Button
 							colorScheme="blue"
 							type="submit"
-							// isLoading={authLoading || addingPost}
 							loadingText="Loading"
 						>
 							Save

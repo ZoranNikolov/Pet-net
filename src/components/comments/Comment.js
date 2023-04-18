@@ -7,11 +7,15 @@ import { useDeleteComment } from "hooks/comments";
 import { useUser } from "hooks/users";
 import { FaTrashAlt } from "react-icons/fa";
 
-export default function Comment({ comment }) {
+export default function Comment({ comment, setIsDeleteCommentModalOpen }) {
 	const { text, uid, date, id } = comment;
 	const { user, isLoading: userLoading } = useUser(uid);
-	const {user: authUser, isLoading: authLoading} = useAuth();
+	const { user: authUser, isLoading: authLoading } = useAuth();
 	const { deleteComment, isLoading: deleteLoading } = useDeleteComment(id);
+
+	const showDeleteCommentModalHandler = () => {
+		setIsDeleteCommentModalOpen(true);
+	};
 
 	if (userLoading) return "Loading...";
 
@@ -36,10 +40,10 @@ export default function Comment({ comment }) {
 								size="sm"
 								ml="auto"
 								icon={<FaTrashAlt />}
-								colorScheme="blue"
+								colorScheme="red"
 								variant="ghost"
 								isRound
-								onClick={deleteComment}
+								onClick={showDeleteCommentModalHandler}
 								isLoading={deleteLoading}
 							/>
 						)}

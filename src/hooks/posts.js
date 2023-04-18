@@ -14,11 +14,13 @@ import {
 	where,
 } from "firebase/firestore";
 import { db } from "lib/firebase";
+import { DASHBOARD } from "lib/routes";
 import { useState } from "react";
 import {
 	useCollectionData,
 	useDocumentData,
 } from "react-firebase-hooks/firestore";
+import { useNavigate } from "react-router-dom";
 
 export function useAddPost() {
 	const [isLoading, setLoading] = useState(false);
@@ -53,10 +55,10 @@ export function useEditPost() {
 	async function editPost(post, updatedText) {
 		setLoading(true);
 		const id = post.id;
-		
+
 		await setDoc(doc(db, "posts", id), {
 			...post,
-			text: updatedText
+			text: updatedText,
 		});
 		toast({
 			title: "Post edited successfully!",
@@ -88,36 +90,28 @@ export function useToggleLike({ id, isLiked, uid }) {
 export function useDeletePost(id) {
 	const [isLoading, setLoading] = useState(false);
 	const toast = useToast();
+	const navigate = useNavigate();
 
 	async function deletePost() {
-		const res = window.confirm(
-			"Are you sure you want to delete this post?"
-		);
+		navigate(DASHBOARD);
+		setLoading(true);
 
-		if (res) {
-			setLoading(true);
+		// Delete post document
+		await deleteDoc(doc(db, "posts", id));
 
-			// Delete post document
-			await deleteDoc(doc(db, "posts", id));
+		// Delete comments
+		const q = query(collection(db, "comments"), where("postId", "==", id));
+		const querySnapshot = await getDocs(q);
+		querySnapshot.forEach(async (doc) => deleteDoc(doc.ref));
 
-			// Delete comments
-			const q = query(
-				collection(db, "comments"),
-				where("postId", "==", id)
-			);
-			const querySnapshot = await getDocs(q);
-			querySnapshot.forEach(async (doc) => deleteDoc(doc.ref));
-
-			toast({
-				title: "Post deleted!",
-				status: "info",
-				isClosable: true,
-				position: "top",
-				duration: 2000,
-			});
-
-			setLoading(false);
-		}
+		toast({
+			title: "Post deleted!",
+			status: "info",
+			isClosable: true,
+			position: "top",
+			duration: 2000,
+		});
+		setLoading(false);
 	}
 	return { deletePost, isLoading };
 }

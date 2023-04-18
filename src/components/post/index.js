@@ -3,12 +3,15 @@ import Header from "./Header";
 import Actions from "./Actions";
 import { useState } from "react";
 import EditPost from "./EditPost";
+import DeletePost from "./DeletePost";
 
 export default function Post({ post }) {
 	const { text } = post;
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const closeModalHandler = () => {
 		setIsEditModalOpen(false);
+		setIsDeleteModalOpen(false);
 	};
 
 	return (
@@ -20,11 +23,22 @@ export default function Post({ post }) {
 						{text}
 					</Text>
 				</Box>
-				<Actions post={post} setIsEditModalOpen={setIsEditModalOpen} />
+				<Actions
+					post={post}
+					setIsEditModalOpen={setIsEditModalOpen}
+					setIsDeleteModalOpen={setIsDeleteModalOpen}
+				/>
 				{isEditModalOpen && (
 					<EditPost
 						post={post}
 						isOpen={isEditModalOpen}
+						onClose={closeModalHandler}
+					/>
+				)}
+				{isDeleteModalOpen && (
+					<DeletePost
+						postId={post.id}
+						isOpen={isDeleteModalOpen}
 						onClose={closeModalHandler}
 					/>
 				)}
