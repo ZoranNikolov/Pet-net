@@ -42,6 +42,7 @@ export default function Profile() {
 						Change avatar
 					</Button>
 				)}
+				<EditProfile isOpen={isOpen} onClose={onClose} />
 
 				<Stack ml="10">
 					<Text fontSize="2xl">{user.username}</Text>
@@ -57,7 +58,6 @@ export default function Profile() {
 						</Text>
 					</HStack>
 				</Stack>
-				<EditProfile isOpen={isOpen} onClose={onClose} />
 			</Flex>
 			<Divider />
 
