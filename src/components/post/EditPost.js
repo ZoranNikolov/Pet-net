@@ -44,7 +44,7 @@ export default function EditPost({ post, isOpen, onClose }) {
 					/>
 					<ModalFooter gap="3">
 						<Button
-							colorScheme="teal"
+							colorScheme="blue"
 							type="submit"
 							// isLoading={authLoading || addingPost}
 							loadingText="Loading"

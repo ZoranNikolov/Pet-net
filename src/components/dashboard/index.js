@@ -24,7 +24,7 @@ function NewPost() {
 				<HStack justify="space-between">
 					<Heading size="lg">New Post</Heading>
 					<Button
-						colorScheme="teal"
+						colorScheme="blue"
 						type="submit"
 						isLoading={authLoading || addingPost}
 						loadingText="Loading"

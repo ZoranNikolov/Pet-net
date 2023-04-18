@@ -71,7 +71,7 @@ export default function Login() {
 						<Button
 							mt="4"
 							type="submit"
-							colorScheme="teal"
+							colorScheme="blue"
 							size="md"
 							w="full"
 							isLoading={isLoading}
@@ -86,10 +86,10 @@ export default function Login() {
 						<Link
 							as={RouterLink}
 							to={REGISTER}
-							color="teal.800"
+							color="blue.700"
 							fontWeight="medium"
 							textDecor="underline"
-							_hover={{ background: "teal.100" }}
+							_hover={{ background: "blue.50" }}
 						>
 							Register
 						</Link>{" "}

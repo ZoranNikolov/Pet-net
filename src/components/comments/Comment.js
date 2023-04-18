@@ -22,7 +22,7 @@ export default function Comment({ comment }) {
 				<Box flex="1" ml="4">
 					<Flex
 						borderBottom="1px solid"
-						borderColor="teal.100"
+						borderColor="blue.100"
 						pb="2"
 					>
 						<Box>
@@ -36,7 +36,7 @@ export default function Comment({ comment }) {
 								size="sm"
 								ml="auto"
 								icon={<FaTrashAlt />}
-								colorScheme="teal"
+								colorScheme="blue"
 								variant="ghost"
 								isRound
 								onClick={deleteComment}

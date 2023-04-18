@@ -94,7 +94,7 @@ export default function Contact() {
 							{...register("message")}
 						/>
 					</FormControl>
-					<Button mt="4" colorScheme="teal" type="submit">
+					<Button mt="4" colorScheme="blue" type="submit">
 						Send
 					</Button>
 				</form>

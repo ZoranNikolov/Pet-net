@@ -39,7 +39,7 @@ export default function NewComment({ post }) {
 							<Button
 								isLoading={commentLoading || authLoading}
 								type="submit"
-								colorScheme="teal"
+								colorScheme="blue"
 								size="xs"
 								ml="auto"
 							>

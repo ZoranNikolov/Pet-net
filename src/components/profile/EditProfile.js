@@ -53,7 +53,7 @@ export default function EditProfile({ isOpen, onClose }) {
 						loadingText="Uploading..."
 						w="full"
 						my="6"
-						colorScheme="teal"
+						colorScheme="blue"
 						onClick={updateAvatar}
 						isLoading={fileLoading}
 					>

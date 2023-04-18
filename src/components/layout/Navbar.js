@@ -16,29 +16,29 @@ export default function Navbar() {
 			pos="fixed"
 			width="full"
 			borderTop="6px solid"
-			borderTopColor="teal.400"
+			borderTopColor="blue.500"
 			height="16"
 			zIndex="3"
 			justify="center"
 			bg="white"
 		>
 			<Flex px="4" w="full" align="center" maxW="1200px" gap="10">
-				<Link color="teal" as={RouterLink} to={HOME} fontWeight="bold">
+				<Link color="blue.700" as={RouterLink} to={HOME} fontWeight="bold">
 					Home
 				</Link>
 				<Link
-					color="teal"
+					color="blue.700"
 					as={RouterLink}
 					to={DASHBOARD}
 					fontWeight="bold"
 				>
 					Feed
 				</Link>
-				<Link color="teal" as={RouterLink} to={ABOUT} fontWeight="bold">
+				<Link color="blue.700" as={RouterLink} to={ABOUT} fontWeight="bold">
 					About
 				</Link>
 				<Link
-					color="teal"
+					color="blue.700"
 					as={RouterLink}
 					to={CONTACT}
 					fontWeight="bold"
@@ -51,7 +51,7 @@ export default function Navbar() {
 						{isUserLoggedIn ? (
 							<Button
 								ml="auto"
-								colorScheme="teal"
+								colorScheme="blue"
 								size="sm"
 								onClick={logout}
 								isLoading={isLoading}
@@ -62,7 +62,7 @@ export default function Navbar() {
 						) : (
 							<Button
 								ml="auto"
-								colorScheme="teal"
+								colorScheme="blue"
 								size="sm"
 								onClick={logout}
 							>

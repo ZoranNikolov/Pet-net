@@ -37,7 +37,7 @@ export default function Actions({ post, setIsModalOpen }) {
 					onClick={toggleLike}
 					isLoading={likeLoading || userLoading}
 					size="md"
-					colorScheme="teal"
+					colorScheme="red"
 					variant="ghost"
 					icon={isLiked ? <FaPaw /> : <IoPawOutline />}
 					isRound
@@ -49,7 +49,7 @@ export default function Actions({ post, setIsModalOpen }) {
 					as={Link}
 					to={`${PROTECTED}/comments/${id}`}
 					size="md"
-					colorScheme="teal"
+					color="blue.700"
 					variant="ghost"
 					icon={
 						comments?.length === 0 ? (
@@ -77,7 +77,7 @@ export default function Actions({ post, setIsModalOpen }) {
 						onClick={deletePost}
 						isLoading={deleteLoading}
 						size="md"
-						colorScheme="teal"
+						colorScheme="red"
 						variant="ghost"
 						icon={<FaTrashAlt />}
 						isRound

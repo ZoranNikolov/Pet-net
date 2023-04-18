@@ -40,7 +40,7 @@ export function useAuth() {
 
 	// Update the user object with the avatar URL
 	useEffect(() => {
-		if (user) {
+		if (user && avatarUrl) {
 			const storageRef = ref(storage, `avatars/${user.id}`);
 			getDownloadURL(storageRef)
 				.then((url) => {

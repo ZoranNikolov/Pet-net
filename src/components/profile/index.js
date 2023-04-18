@@ -36,7 +36,7 @@ export default function Profile() {
 						mb="2"
 						top="6"
 						right="6"
-						colorScheme="teal"
+						colorScheme="blue"
 						onClick={onOpen}
 					>
 						Change avatar

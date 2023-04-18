@@ -18,7 +18,7 @@ export default function User({ user }) {
 			<Avatar user={user} />
 			<Code>@{username}</Code>
 			<Link to={`${PROTECTED}/profile/${id}`}>
-				<Button size="sm" variant="link" colorScheme="teal">
+				<Button size="sm" variant="link" color="blue.700">
 					View Profile
 				</Button>
 			</Link>
