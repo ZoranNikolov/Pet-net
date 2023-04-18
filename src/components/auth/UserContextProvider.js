@@ -15,7 +15,14 @@ export function UserContextProvider(props) {
 	}, [isUserLoggedIn]);
 
 	return (
-		<UserContext.Provider value={{ isUserLoggedIn, setIsUserLoggedIn, avatarUrl, setAvatarUrl }}>
+		<UserContext.Provider
+			value={{
+				isUserLoggedIn,
+				setIsUserLoggedIn,
+				avatarUrl,
+				setAvatarUrl,
+			}}
+		>
 			{props.children}
 		</UserContext.Provider>
 	);

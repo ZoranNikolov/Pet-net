@@ -7,7 +7,7 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 
 export default function Navbar() {
 	const { logout, isLoading } = useLogout();
-	const { isUserLoggedIn, setIsUserLoggedIn } = useContext(UserContext);
+	const { isUserLoggedIn } = useContext(UserContext);
 	const { pathname } = useLocation();
 
 	return (
@@ -23,7 +23,12 @@ export default function Navbar() {
 			bg="white"
 		>
 			<Flex px="4" w="full" align="center" maxW="1200px" gap="10">
-				<Link color="blue.700" as={RouterLink} to={HOME} fontWeight="bold">
+				<Link
+					color="blue.700"
+					as={RouterLink}
+					to={HOME}
+					fontWeight="bold"
+				>
 					Home
 				</Link>
 				<Link
@@ -34,7 +39,12 @@ export default function Navbar() {
 				>
 					Feed
 				</Link>
-				<Link color="blue.700" as={RouterLink} to={ABOUT} fontWeight="bold">
+				<Link
+					color="blue.700"
+					as={RouterLink}
+					to={ABOUT}
+					fontWeight="bold"
+				>
 					About
 				</Link>
 				<Link
